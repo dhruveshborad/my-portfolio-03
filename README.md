@@ -1,4 +1,4 @@
-# Alex Chen - Portfolio Website
+# Dhruvesh Borad - Portfolio Website
 
 A modern, responsive portfolio website built with Next.js 15 and Tailwind CSS. Features a beautiful cosmic background animation, smooth scrolling, and a fully interactive design.
 
