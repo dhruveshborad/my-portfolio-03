@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Download, Rocket } from "lucide-react";
 import { personalInfo } from "../data/portfolio";
+import Image from "next/image";
 
 export function HeroSection() {
   const handleViewWork = () => {
@@ -13,13 +14,16 @@ export function HeroSection() {
   const handleDownloadCV = () => {
     // In a real app, this would download the actual CV
     const link = document.createElement("a");
-    link.href = "#";
-    link.download = "Alex_Chen_CV.pdf";
+    link.href = "/assets/Resume.pdf";
+    link.download = "Resume.pdf";
     link.click();
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative z-10 px-4">
+    <section
+      id="home"
+      className="min-h-screen flex items-center justify-center relative z-10 px-4"
+    >
       <div className="text-center">
         {/* Profile Image */}
         <motion.div
@@ -39,10 +43,12 @@ export function HeroSection() {
               ease: "easeInOut",
             }}
           >
-            <img
+            <Image
               src={personalInfo.profileImage}
+              width={160}
+              height={160}
               alt={`${personalInfo.name} - Frontend Developer`}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-top object-cover"
             />
           </motion.div>
         </motion.div>

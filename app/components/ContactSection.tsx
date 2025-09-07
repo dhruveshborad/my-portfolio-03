@@ -99,7 +99,7 @@ export function ContactSection() {
     },
     { 
       name: "Resume", 
-      href: "#", 
+      href: "/assets/Resume.pdf", 
       icon: <Download size={20} />, 
       color: "text-accent" 
     },
@@ -120,7 +120,7 @@ export function ContactSection() {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
           <p className="text-white/80 mt-6 max-w-2xl mx-auto">
-            Ready to collaborate on your next stellar project? Let's create something amazing together!
+            Ready to collaborate on your next stellar project? Let&apos;s create something amazing together!
           </p>
         </motion.div>
 
@@ -293,6 +293,7 @@ export function ContactSection() {
                 {socialLinks.map((link) => (
                   <motion.a
                     key={link.name}
+                    target="_blank"
                     href={link.href}
                     className="flex items-center justify-center space-x-3 glass-morphism px-6 py-4 rounded-xl hover:cosmic-glow transition-all duration-300 group"
                     whileHover={{ scale: 1.05 }}

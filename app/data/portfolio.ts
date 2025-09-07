@@ -30,14 +30,14 @@ export const personalInfo = {
   name: "Dhruvesh Borad",
   title: "Frontend Developer & Digital Architect",
   description: "Crafting stellar digital experiences with 5+ years of expertise in React.js, Next.js, and modern web technologies. Let's build something extraordinary together.",
-  email: "alex.chen@example.com",
-  phone: "+1 (555) 123-4567",
-  location: "San Francisco, CA",
-  profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=400",
+  email: "dhruveshborad2003@gmail.com",
+  phone: "+91 (769) 83-42723",
+  location: "Surat, Guj, India",
+  profileImage: "/assets/me.png",
   socialLinks: {
-    linkedin: "https://linkedin.com",
-    github: "https://github.com",
-    twitter: "https://twitter.com",
+    linkedin: "https://www.linkedin.com/in/dhruveshkumar-borad-680505214",
+    github: "https://github.com/dhruveshborad",
+    twitter: "https://x.com/DhruveshBo53453",
   }
 };
 
@@ -159,32 +159,32 @@ export const experiences: Experience[] = [
   {
     type: "work",
     title: "Senior Frontend Developer",
-    company: "TechCorp Solutions",
-    period: "2022 - Present",
+    company: "HexaScal Technologies",
+    period: "2024 - Present",
     description: "Lead frontend development for enterprise web applications. Implemented modern React.js architectures, mentored junior developers, and improved application performance by 40%.",
     technologies: ["React.js", "Next.js", "TypeScript"]
   },
   {
     type: "work",
-    title: "Frontend Developer",
-    company: "Digital Innovations Inc.",
-    period: "2020 - 2022",
-    description: "Developed responsive web applications using React.js and modern CSS frameworks. Collaborated with UX/UI designers to create pixel-perfect implementations.",
-    technologies: ["React.js", "Redux", "Sass"]
+    title: "Web Developer",
+    company: "CapCarbon Technology",
+    period: "2023 - 2024",
+    description: "Built interactive web interfaces and implemented responsive designs. Gained expertise in modern JavaScript frameworks and agile development methodologies.",
+    technologies: ["Next.js", "Tailwind", "auth0", "swagger"]
   },
   {
     type: "work",
-    title: "Junior Web Developer",
-    company: "StartupTech Labs",
-    period: "2019 - 2020",
-    description: "Built interactive web interfaces and implemented responsive designs. Gained expertise in modern JavaScript frameworks and agile development methodologies.",
-    technologies: ["JavaScript", "Vue.js", "Bootstrap"]
+    title: "React.JS Developer",
+    company: "Codage Habitation",
+    period: "2021 - 2023",
+    description: "Developed responsive web applications using React.js and modern CSS frameworks. Collaborated with UX/UI designers to create pixel-perfect implementations.",
+    technologies: ["React.js", "Redux", "Sass", "Tailwind", "Material-UI", "Figma"]
   },
   {
     type: "education",
-    title: "Bachelor of Computer Science",
-    company: "University of Technology",
-    period: "2015 - 2019",
+    title: "Bachelor of Computer Engineering",
+    company: "Aditya Silver Oak Institute of Technology",
+    period: "2020 - 2024",
     description: "Specialized in Software Engineering with focus on web technologies and user interface design. Graduated with honors and Dean's list recognition."
   },
   {

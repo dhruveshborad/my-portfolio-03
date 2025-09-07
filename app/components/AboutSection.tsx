@@ -66,7 +66,7 @@ export function AboutSection() {
                 Who I Am
               </h3>
               <p className="text-white/80 leading-relaxed">
-                I'm a passionate Frontend Developer with over 5 years of experience creating exceptional digital experiences. 
+                I&apos;m a passionate Frontend Developer with over 5 years of experience creating exceptional digital experiences. 
                 My journey in web development started with curiosity and has evolved into a deep expertise in modern technologies 
                 and user-centered design principles.
               </p>
@@ -82,7 +82,7 @@ export function AboutSection() {
               </h3>
               <p className="text-white/80 leading-relaxed">
                 I specialize in building responsive, performant web applications using React.js and Next.js. 
-                I'm passionate about clean code, exceptional user experiences, and staying at the forefront of web technology innovation.
+                I&apos;m passionate about clean code, exceptional user experiences, and staying at the forefront of web technology innovation.
               </p>
             </motion.div>
           </div>
@@ -123,8 +123,8 @@ export function AboutSection() {
               </h3>
               <ul className="space-y-3 text-white/80">
                 {[
-                  "5+ years of frontend development expertise",
-                  "50+ successful projects delivered",
+                  "4+ years of frontend development expertise",
+                  "20+ successful projects delivered",
                   "Modern responsive web applications"
                 ].map((highlight, index) => (
                   <motion.li
