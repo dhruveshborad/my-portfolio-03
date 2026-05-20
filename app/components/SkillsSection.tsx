@@ -5,12 +5,6 @@ import { skills } from "../data/portfolio";
 export function SkillsSection() {
   const { ref, isIntersecting } = useIntersectionObserver();
 
-  const getProgressGradient = (level: number) => {
-    if (level < 50) return "from-[var(--destructive)] to-[var(--secondary)]";
-    if (level < 80) return "from-primary to-ring";
-    return "from-[var(--ring)] to-[var(--secondary)]";
-  };
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -59,41 +53,30 @@ export function SkillsSection() {
           {skills.map((skillCategory, categoryIndex) => (
             <motion.div
               key={skillCategory.category}
-              className="relative p-6 md:p-8 rounded-2xl border border-white/10 bg-gradient-to-b from-white/10 to-white/0 backdrop-blur-md shadow-xl transition-all duration-500 hover:scale-[1.02]"
+              className="glass-morphism p-8 rounded-2xl cosmic-glow"
               variants={itemVariants}
               data-testid={`skill-category-${categoryIndex}`}
             >
               {/* Category Header */}
               <div className="text-center mb-6">
                 <i className={`${skillCategory.icon} text-4xl mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent`}></i>
-                <h3 className="text-xl font-orbitron font-semibold text-white tracking-wide">
+                <h3 className="text-2xl font-orbitron font-semibold text-accent tracking-wide">
                   {skillCategory.category}
                 </h3>
               </div>
 
               {/* Skills List */}
-              <div className="space-y-4">
+              <div className="flex flex-wrap gap-3 justify-center">
                 {skillCategory.skills.map((skill, skillIndex) => (
-                  <div key={skill.name}>
-                    <div className="flex items-center justify-between gap-2 mb-2 flex-wrap">
-                      <span className="text-white/90 min-w-0 flex-1 truncate text-sm sm:text-base">{skill.name}</span>
-                      <span className="text-accent/90 font-semibold text-sm sm:text-base">{skill.level}%</span>
-                    </div>
-                    <div className="w-full bg-white/10 rounded-full h-2 sm:h-3 overflow-hidden relative">
-                      <motion.div
-                        className={`bg-gradient-to-r from-primary to-ring h-2 sm:h-3 rounded-full ring-1 ring-white/10 relative`}
-                        initial={{ width: 0 }}
-                        animate={isIntersecting ? { width: `${skill.level}%` } : { width: 0 }}
-                        transition={{ 
-                          duration: 1.5, 
-                          delay: categoryIndex * 0.2 + skillIndex * 0.1,
-                          ease: "easeOut"
-                        }}
-                      >
-                        <span className="absolute right-1 -top-6 text-xs text-white/80 hidden md:block">{skill.level}%</span>
-                      </motion.div>
-                    </div>
-                  </div>
+                  <motion.span
+                    key={skill}
+                    className="px-4 py-2 rounded-full border border-white/20 bg-white/5 text-white/90 text-sm font-medium hover:bg-white/10 hover:border-accent transition-colors"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={isIntersecting ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                    transition={{ delay: categoryIndex * 0.1 + skillIndex * 0.05 }}
+                  >
+                    {skill}
+                  </motion.span>
                 ))}
               </div>
             </motion.div>

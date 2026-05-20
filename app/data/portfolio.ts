@@ -11,10 +11,7 @@ export interface Project {
 export interface Skill {
   category: string;
   icon: string;
-  skills: {
-    name: string;
-    level: number;
-  }[];
+  skills: string[];
 }
 
 export interface Experience {
@@ -28,8 +25,8 @@ export interface Experience {
 
 export const personalInfo = {
   name: "Dhruvesh Borad",
-  title: "Frontend Developer & Digital Architect",
-  description: "Crafting stellar digital experiences with 5+ years of expertise in React.js, Next.js, and modern web technologies. Let's build something extraordinary together.",
+  title: "Fullstack Developer & Digital Architect",
+  description: "Crafting stellar digital experiences with 5+ years of expertise in the MERN stack, React.js, Next.js, and modern web technologies. Let's build something extraordinary together.",
   email: "dhruveshborad2003@gmail.com",
   phone: "+91 (769) 83-42723",
   location: "Surat, Guj, India",
@@ -44,56 +41,110 @@ export const personalInfo = {
 export const projects: Project[] = [
   {
     id: "1",
-    title: "E-commerce Platform",
-    description: "Full-stack e-commerce solution built with Next.js, featuring product management, shopping cart, and secure payment integration.",
-    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
-    technologies: ["Next.js", "React", "Tailwind"],
-    demoUrl: "#",
+    title: "The Top Analysts",
+    description: "Community-driven platform where investors share stock predictions, price targets, and market insights in real time.",
+    image: "/assets/thetopanalysts.png",
+    technologies: ["Next.js", "Node.js", "Fastify", "PostgreSQL", "AWS", "Prisma", "TypeScript"],
+    demoUrl: "https://thetopanalysts.com/",
     githubUrl: "#"
   },
   {
     id: "2",
-    title: "Analytics Dashboard",
-    description: "Interactive analytics dashboard with real-time data visualization, custom charts, and comprehensive reporting features.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
-    technologies: ["React", "D3.js", "API"],
-    demoUrl: "#",
+    title: "ZEA DIGITAL DGOLD TRADING",
+    description: "Trusted digital gold investment platform connecting Malaysia and India, offering secure, reliable, and profitable gold savings.",
+    image: "/assets/zeadigitaldgoldtrading.png",
+    technologies: ["Next.js", "Node.js", "Fastify", "TanStack Query", "Tailwind CSS", "Redis", "PostgreSQL", "Vercel"],
+    demoUrl: "https://zeadigitaldgoldtrading.com/",
     githubUrl: "#"
   },
   {
     id: "3",
-    title: "Task Management App",
-    description: "Collaborative project management tool with drag-and-drop functionality, team collaboration features, and progress tracking.",
-    image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
-    technologies: ["Next.js", "TypeScript", "Firebase"],
-    demoUrl: "#",
+    title: "AI Taggers",
+    description: "Australia's partner for high-accuracy, human-verified AI training data across 100+ languages with enterprise-grade security.",
+    image: "/assets/aitaggers.png",
+    technologies: ["Next.js", "Tailwind CSS", "Supabase", "TypeScript", "OpenAI", "Vercel", "LLM Integration", "AI Data Processing", "Prompt Engineering"],
+    demoUrl: "https://www.aitaggers.com.au/",
     githubUrl: "#"
   },
   {
     id: "4",
-    title: "Weather Forecast App",
-    description: "Beautiful weather application with location-based forecasts, interactive maps, and detailed weather analytics.",
-    image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
-    technologies: ["React", "API", "PWA"],
-    demoUrl: "#",
+    title: "Dinar Exchange",
+    description: "Trusted currency exchange service for buying Iraqi Dinar in Australia with secure checkout, tracked delivery, and 10+ years experience.",
+    image: "/assets/dinarexchange.png",
+    technologies: ["Next.js", "Tailwind CSS", "Supabase", "TypeScript", "OpenAI", "Vercel", "AI API Development", "AI Workflow Automation"],
+    demoUrl: "https://dinarexchange.com.au/",
     githubUrl: "#"
   },
   {
     id: "5",
-    title: "Crypto Trading Platform",
-    description: "Real-time cryptocurrency trading platform with advanced charting, portfolio management, and market analysis tools.",
-    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
-    technologies: ["Next.js", "WebSocket", "Chart.js"],
-    demoUrl: "#",
+    title: "Line Marking Australia",
+    description: "Professional line marking services across Australia since 2009. AS/NZS compliant carparks, warehouses, and roads with over 5,000+ projects completed.",
+    image: "/assets/linemarkingaustralia.png",
+    technologies: ["Next.js", "Supabase", "PostgreSQL", "OpenAI", "AWS", "Vercel", "Cloudflare", "RAG Applications", "AI Agent Systems"],
+    demoUrl: "https://linemarkingaustralia.com.au/",
     githubUrl: "#"
   },
   {
     id: "6",
-    title: "Social Media Platform",
-    description: "Modern social networking platform with real-time messaging, content sharing, and community features.",
-    image: "https://images.unsplash.com/photo-1562577309-4932fdd64cd1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
-    technologies: ["React", "Socket.io", "MongoDB"],
-    demoUrl: "#",
+    title: "Australian Credit Solutions",
+    description: "Australia's leading credit repair specialists helping remove defaults, court judgments, and enquiries with a 98% success rate and ASIC licensing.",
+    image: "/assets/australiancreditsolutions.png",
+    technologies: ["Next.js", "Supabase", "PostgreSQL", "OpenAI", "AWS", "Vercel", "Cloudflare", "AI Backend Architecture", "Prompt Engineering", "AI Workflow Automation"],
+    demoUrl: "https://www.australiancreditsolutions.com.au/",
+    githubUrl: "#"
+  },
+  {
+    id: "7",
+    title: "EventLo",
+    description: "Modern all-in-one event planning system for professional wedding planners, combining task management, timelines, vendor coordination, and budget tracking.",
+    image: "/assets/eventlo.png",
+    technologies: ["Next.js", "Sanity", "PostgreSQL", "Node.js", "Vercel"],
+    demoUrl: "https://event-lo.com/",
+    githubUrl: "#"
+  },
+  {
+    id: "8",
+    title: "2MPro",
+    description: "Advanced investment platform offering secure, fast, and transparent trading in stocks, crypto, forex, and commodities markets.",
+    image: "/assets/2mpro.png",
+    technologies: ["Next.js", "FastAPI", "AWS", "Python", "SWR", "PostgreSQL", "LLM Integration", "AI API Development", "AI Agent Systems"],
+    demoUrl: "https://2mpro.online/",
+    githubUrl: "#"
+  },
+  {
+    id: "9",
+    title: "CT Menkul Islem",
+    description: "Trusted financial trading platform providing access to global markets including stocks, forex, and commodities with advanced analysis tools.",
+    image: "/assets/ctmenkulislem.png",
+    technologies: ["Next.js", "FastAPI", "AWS", "Python", "SWR", "PostgreSQL"],
+    demoUrl: "https://esube.ctmenkulislem.com/",
+    githubUrl: "#"
+  },
+  {
+    id: "10",
+    title: "Finansal Borsa",
+    description: "Professional investment platform for secure trading in stocks, crypto, foreign exchange, and commodities with real-time market data.",
+    image: "/assets/finansalborsa.png",
+    technologies: ["Next.js", "FastAPI", "AWS", "Python", "SWR", "PostgreSQL"],
+    demoUrl: "https://esube.finansalborsa.com/",
+    githubUrl: "#"
+  },
+  {
+    id: "11",
+    title: "YFMKL",
+    description: "Comprehensive investment solution for trading multiple asset classes with secure infrastructure and real-time market execution.",
+    image: "/assets/yfmkl.png",
+    technologies: ["Next.js", "FastAPI", "AWS", "Python", "SWR", "PostgreSQL"],
+    demoUrl: "https://esube.yfmkl.com/",
+    githubUrl: "#"
+  },
+  {
+    id: "12",
+    title: "Atlas Piyasa",
+    description: "Professional trading environment for stocks and commodities featuring fast execution, reliability, and advanced charting capabilities.",
+    image: "/assets/atlaspiyasa.png",
+    technologies: ["Next.js", "FastAPI", "AWS", "Python", "SWR", "PostgreSQL"],
+    demoUrl: "https://esube.atlaspiyasa.com/",
     githubUrl: "#"
   }
 ];
@@ -103,54 +154,54 @@ export const skills: Skill[] = [
     category: "Frontend Development",
     icon: "fas fa-code",
     skills: [
-      { name: "React.js", level: 95 },
-      { name: "Next.js", level: 90 },
-      { name: "JavaScript", level: 92 }
+      "React.js",
+      "Next.js",
+      "JavaScript"
     ]
   },
   {
     category: "Styling & Design",
     icon: "fas fa-palette",
     skills: [
-      { name: "Tailwind CSS", level: 95 },
-      { name: "CSS3", level: 88 },
-      { name: "Bootstrap", level: 85 }
+      "Tailwind CSS",
+      "CSS3",
+      "Bootstrap"
     ]
   },
   {
     category: "Development Tools",
     icon: "fas fa-tools",
     skills: [
-      { name: "Git & GitHub", level: 90 },
-      { name: "VS Code", level: 95 },
-      { name: "Jira", level: 80 }
+      "Git & GitHub",
+      "VS Code",
+      "Jira"
     ]
   },
   {
     category: "Backend Knowledge",
     icon: "fas fa-server",
     skills: [
-      { name: "Node.js", level: 75 },
-      { name: "Express.js", level: 70 },
-      { name: "MongoDB", level: 68 }
+      "Node.js",
+      "Express.js",
+      "MongoDB"
     ]
   },
   {
     category: "UI/UX Design",
     icon: "fas fa-paint-brush",
     skills: [
-      { name: "Figma", level: 85 },
-      { name: "Adobe XD", level: 78 },
-      { name: "Prototyping", level: 82 }
+      "Figma",
+      "Adobe XD",
+      "Prototyping"
     ]
   },
   {
     category: "Testing & Performance",
     icon: "fas fa-bug",
     skills: [
-      { name: "Jest", level: 75 },
-      { name: "Cypress", level: 70 },
-      { name: "Lighthouse", level: 85 }
+      "Jest",
+      "Cypress",
+      "Lighthouse"
     ]
   }
 ];
@@ -158,11 +209,11 @@ export const skills: Skill[] = [
 export const experiences: Experience[] = [
   {
     type: "work",
-    title: "Senior Frontend Developer",
+    title: "Senior Fullstack Developer",
     company: "HexaScal Technologies",
     period: "2024 - Present",
-    description: "Lead frontend development for enterprise web applications. Implemented modern React.js architectures, mentored junior developers, and improved application performance by 40%.",
-    technologies: ["React.js", "Next.js", "TypeScript"]
+    description: "Lead fullstack development for enterprise web applications. Implemented modern MERN stack and React.js architectures, mentored junior developers, and improved application performance by 40%.",
+    technologies: ["MongoDB", "Express.js", "React.js", "Node.js", "Next.js", "TypeScript"]
   },
   {
     type: "work",
@@ -190,22 +241,22 @@ export const experiences: Experience[] = [
   {
     type: "certification",
     title: "React Developer Certification",
-    company: "Meta (Facebook)",
-    period: "2021",
+    company: "Codage Habitation",
+    period: "2022",
     description: "Advanced React.js certification covering hooks, context, performance optimization, and modern React patterns."
   },
   {
     type: "certification",
-    title: "AWS Cloud Practitioner",
-    company: "Amazon Web Services",
-    period: "2022",
-    description: "Foundation-level understanding of AWS cloud services, architecture, and deployment strategies for web applications."
+    title: "Fullstack Development Excellence",
+    company: "CapCarbon Technology",
+    period: "2023",
+    description: "Recognition for outstanding contribution in building interactive web interfaces and implementing scalable backend architectures."
   },
   {
     type: "certification",
-    title: "Google UX Design Certificate",
-    company: "Google Career Certificates",
-    period: "2023",
-    description: "Comprehensive UX design training covering user research, wireframing, prototyping, and usability testing methodologies."
+    title: "Enterprise Architecture Certification",
+    company: "HexaScal Technologies",
+    period: "2024",
+    description: "Advanced certification for leading frontend and fullstack development, focusing on modern React.js architectures and performance."
   }
 ];

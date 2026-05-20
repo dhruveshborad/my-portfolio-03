@@ -31,7 +31,7 @@ export default function Portfolio() {
       <footer className="py-8 px-4 border-t border-border/20 relative z-10">
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-white/60 mb-4">
-            © 2024 Dhruvesh Borad. All rights reserved. Built with <span className="text-accent">❤️</span> and lots of ☕
+            © {new Date().getFullYear()} Dhruvesh Borad. All rights reserved. Built with <span className="text-accent">❤️</span> and lots of ☕
           </p>
           <p className="text-white/40 text-sm">
             Designed and developed with modern web technologies

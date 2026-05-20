@@ -40,23 +40,58 @@ export function ContactSection() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    fetch("/api/contact-us", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: formData.email,
+        firstname: formData.firstName,
+        lastname: formData.lastName,
+        message: formData.message,
+        subject: formData.subject
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setFormData({
+            firstName: "",
+            lastName: "",
+            email: "",
+            message: "",
+            subject: "",
+          });
 
-    toast({
-      title: "Message Sent! 🚀",
-      description: "Thank you for your message! I'll get back to you soon.",
-    });
+          toast({
+            title: "Message Sent! 🚀",
+            description: "Thank you for your message! I'll get back to you soon.",
+          });
+        } else {
+          toast({
+            title: "Message Failed! ❌",
+            description: "Something went wrong. Please try again later.",
+            variant: "destructive",
+          });
+        }
+      })
+      .catch(() => {
+        toast({
+          title: "Message Failed! ❌",
+          description: "Something went wrong. Please try again later.",
+          variant: "destructive",
+        });
+      })
+      .finally(() => {
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
 
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
-
-    setIsSubmitting(false);
+        setIsSubmitting(false);
+      });
   };
 
   const containerVariants = {
