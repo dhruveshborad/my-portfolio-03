@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
+    url: 'https://dhruvesh-borad.vercel.app/',
     title: 'Dhruvesh Borad - Frontend Developer Portfolio',
     description: 'Personal portfolio website showcasing 5+ years of experience in React.js, Next.js, and modern web development.',
     siteName: 'Dhruvesh Borad Portfolio',
