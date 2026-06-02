@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useTheme } from "./ThemeProvider";
-import { Moon, Sun, Home, User, FolderOpen, Brain , Award, Contact } from "lucide-react";
+import { Moon, Sun, Home, User, FolderOpen, Brain , Award, Contact, MessageSquare } from "lucide-react";
 
 interface NavigationProps {
   scrollProgress: number;
@@ -15,6 +15,7 @@ export function Navigation({ scrollProgress }: NavigationProps) {
     { href: "#projects", label: "Projects", Icon: FolderOpen },
     { href: "#skills", label: "Skills", Icon: Brain  },
     { href: "#experience", label: "Experience", Icon: Award },
+    { href: "#feedback", label: "Testimonials", Icon: MessageSquare },
     { href: "#contact", label: "Contact", Icon: Contact },
   ];
 

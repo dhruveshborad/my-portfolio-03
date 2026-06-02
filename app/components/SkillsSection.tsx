@@ -66,18 +66,22 @@ export function SkillsSection() {
               </div>
 
               {/* Skills List */}
-              <div className="flex flex-wrap gap-3 justify-center">
-                {skillCategory.skills.map((skill, skillIndex) => (
-                  <motion.span
-                    key={skill}
-                    className="px-4 py-2 rounded-full border border-white/20 bg-white/5 text-white/90 text-sm font-medium hover:bg-white/10 hover:border-accent transition-colors"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={isIntersecting ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                    transition={{ delay: categoryIndex * 0.1 + skillIndex * 0.05 }}
-                  >
-                    {skill}
-                  </motion.span>
-                ))}
+              <div className="flex flex-wrap gap-2.5 justify-center">
+                {skillCategory.skills.map((skill, skillIndex) => {
+                  const Icon = skill.icon;
+                  return (
+                    <motion.span
+                      key={skill.name}
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/20 bg-white/5 text-white/90 text-xs font-medium hover:bg-white/10 hover:border-accent transition-colors"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={isIntersecting ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                      transition={{ delay: categoryIndex * 0.1 + skillIndex * 0.05 }}
+                    >
+                      {Icon && <Icon className="text-sm" />}
+                      {skill.name}
+                    </motion.span>
+                  );
+                })}
               </div>
             </motion.div>
           ))}

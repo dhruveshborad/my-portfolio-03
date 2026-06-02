@@ -1,3 +1,14 @@
+import {
+  FaReact, FaNodeJs, FaPython, FaDocker, FaAws, FaRobot, FaBrain,
+  FaKeyboard, FaCogs, FaDatabase, FaProjectDiagram, FaServer, FaNetworkWired, FaGitAlt
+} from "react-icons/fa";
+import {
+  SiNextdotjs, SiTypescript, SiJavascript, SiTailwindcss, SiRedux,
+  SiReactquery, SiFlutter, SiExpress, SiFastify, SiDjango, SiFlask,
+  SiFastapi, SiLaravel, SiWordpress, SiPostgresql, SiMongodb, SiMysql,
+  SiPrisma, SiDrizzle, SiWebpack, SiJest, SiVitest, SiTestinglibrary, SiVercel, SiGithubactions
+} from "react-icons/si";
+
 export interface Project {
   id: string;
   title: string;
@@ -8,10 +19,15 @@ export interface Project {
   githubUrl: string;
 }
 
+export interface SkillItem {
+  name: string;
+  icon: any;
+}
+
 export interface Skill {
   category: string;
   icon: string;
-  skills: string[];
+  skills: SkillItem[];
 }
 
 export interface Experience {
@@ -21,6 +37,14 @@ export interface Experience {
   period: string;
   description: string;
   technologies?: string[];
+}
+
+export interface Testimonial {
+  id: string;
+  name: string;
+  country: string;
+  countryCode: string;
+  content: string;
 }
 
 export const personalInfo = {
@@ -151,57 +175,84 @@ export const projects: Project[] = [
 
 export const skills: Skill[] = [
   {
-    category: "Frontend Development",
-    icon: "fas fa-code",
+    category: "Frontend",
+    icon: "fas fa-desktop",
     skills: [
-      "React.js",
-      "Next.js",
-      "JavaScript"
+      { name: "React", icon: FaReact },
+      { name: "Next.js", icon: SiNextdotjs },
+      { name: "JavaScript", icon: SiJavascript },
+      { name: "TypeScript", icon: SiTypescript },
+      { name: "Tailwind CSS", icon: SiTailwindcss },
+      { name: "Redux", icon: SiRedux },
+      { name: "TanStack Query", icon: SiReactquery },
+      { name: "Flutter", icon: SiFlutter }
     ]
   },
   {
-    category: "Styling & Design",
-    icon: "fas fa-palette",
-    skills: [
-      "Tailwind CSS",
-      "CSS3",
-      "Bootstrap"
-    ]
-  },
-  {
-    category: "Development Tools",
-    icon: "fas fa-tools",
-    skills: [
-      "Git & GitHub",
-      "VS Code",
-      "Jira"
-    ]
-  },
-  {
-    category: "Backend Knowledge",
+    category: "Backend",
     icon: "fas fa-server",
     skills: [
-      "Node.js",
-      "Express.js",
-      "MongoDB"
+      { name: "Node.js", icon: FaNodeJs },
+      { name: "Express", icon: SiExpress },
+      { name: "Fastify", icon: SiFastify },
+      { name: "Python", icon: FaPython },
+      { name: "Django", icon: SiDjango },
+      { name: "Flask", icon: SiFlask },
+      { name: "FastAPI", icon: SiFastapi },
+      { name: "Laravel", icon: SiLaravel },
+      { name: "WordPress", icon: SiWordpress }
     ]
   },
   {
-    category: "UI/UX Design",
-    icon: "fas fa-paint-brush",
+    category: "Database",
+    icon: "fas fa-database",
     skills: [
-      "Figma",
-      "Adobe XD",
-      "Prototyping"
+      { name: "PostgreSQL", icon: SiPostgresql },
+      { name: "MongoDB", icon: SiMongodb },
+      { name: "MySQL", icon: SiMysql }
     ]
   },
   {
-    category: "Testing & Performance",
-    icon: "fas fa-bug",
+    category: "ORM & Tools",
+    icon: "fas fa-tools",
     skills: [
-      "Jest",
-      "Cypress",
-      "Lighthouse"
+      { name: "Prisma", icon: SiPrisma },
+      { name: "Drizzle", icon: SiDrizzle },
+      { name: "Git", icon: FaGitAlt },
+      { name: "Webpack", icon: SiWebpack }
+    ]
+  },
+  {
+    category: "Testing",
+    icon: "fas fa-vial",
+    skills: [
+      { name: "Jest", icon: SiJest },
+      { name: "Vitest", icon: SiVitest },
+      { name: "Testing Library", icon: SiTestinglibrary }
+    ]
+  },
+  {
+    category: "Cloud & DevOps",
+    icon: "fas fa-cloud",
+    skills: [
+      { name: "Vercel", icon: SiVercel },
+      { name: "AWS", icon: FaAws },
+      { name: "Docker", icon: FaDocker },
+      { name: "GitHub Actions", icon: SiGithubactions }
+    ]
+  },
+  {
+    category: "AI & Automation",
+    icon: "fas fa-robot",
+    skills: [
+      { name: "LLM Integration", icon: FaRobot },
+      { name: "RAG Applications", icon: FaBrain },
+      { name: "Prompt Engineering", icon: FaKeyboard },
+      { name: "AI Workflow Automation", icon: FaCogs },
+      { name: "AI Data Processing", icon: FaDatabase },
+      { name: "AI API Development", icon: FaProjectDiagram },
+      { name: "AI Backend Architecture", icon: FaServer },
+      { name: "AI Agent Systems", icon: FaNetworkWired }
     ]
   }
 ];
@@ -258,5 +309,57 @@ export const experiences: Experience[] = [
     company: "HexaScal Technologies",
     period: "2024",
     description: "Advanced certification for leading frontend and fullstack development, focusing on modern React.js architectures and performance."
+  }
+];
+
+export const testimonials: Testimonial[] = [
+  {
+    id: "1",
+    name: "Maki",
+    country: "Japan",
+    countryCode: "jp",
+    content: "Yash built our real-time investment platform with great performance and scalability. The system manages live predictions and discussions effectively. It is very reliable and well executed."
+  },
+  {
+    id: "2",
+    name: "Karan Patel",
+    country: "USA",
+    countryCode: "us",
+    content: "Yash provided a complete event management platform with clear structure and smooth user experience. Task tracking and budgeting all function well."
+  },
+  {
+    id: "3",
+    name: "Abdullah",
+    country: "Turkey",
+    countryCode: "tr",
+    content: "The trading interface is quick, safe, and able to grow. Yash gave us exactly what we needed for a businesslike financial platform."
+  },
+  {
+    id: "4",
+    name: "Neel Bennet",
+    country: "Australia",
+    countryCode: "au",
+    content: "He created a dependable currency trading platform that offers smooth checkout and solid security. The system works reliably and fosters customer trust."
+  },
+  {
+    id: "5",
+    name: "Aleena",
+    country: "Malaysia",
+    countryCode: "my",
+    content: "Our digital gold platform is safe, quick, and simple to use. Yash made sure that the backend validation was strong and that transactions went smoothly. A lot of knowledge about fintech."
+  },
+  {
+    id: "6",
+    name: "Neel Bennet",
+    country: "Australia",
+    countryCode: "au",
+    content: "Yash made us an AI data platform that can grow and is safe. The structure and performance are both great. Very professional and pays attention to details."
+  },
+  {
+    id: "7",
+    name: "Abdullah",
+    country: "Turkey",
+    countryCode: "tr",
+    content: "A high-performance trading platform with reliable backend systems and seamless real-time execution was designed by Yash. Excellent technical performance all around."
   }
 ];

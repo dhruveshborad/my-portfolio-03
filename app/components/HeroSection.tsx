@@ -1,9 +1,30 @@
+"use client";
+
 import { motion } from "framer-motion";
-import { Download, Rocket } from "lucide-react";
+import { Download, Rocket, MapPin, Clock } from "lucide-react";
 import { personalInfo } from "../data/portfolio";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 export function HeroSection() {
+  const [displayText, setDisplayText] = useState("");
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
+
+  useEffect(() => {
+    let i = 0;
+    const text = personalInfo.name;
+    const timer = setInterval(() => {
+      setDisplayText(text.substring(0, i));
+      i++;
+      if (i > text.length) {
+        clearInterval(timer);
+        setIsTypingComplete(true);
+      }
+    }, 150); // typing speed
+    
+    return () => clearInterval(timer);
+  }, []);
+
   const handleViewWork = () => {
     const element = document.querySelector("#projects");
     if (element) {
@@ -55,25 +76,50 @@ export function HeroSection() {
 
         {/* Name */}
         <motion.h1
-          className="text-6xl md:text-8xl font-orbitron font-bold text-white mb-4"
+          className="text-6xl md:text-8xl font-orbitron font-bold text-white mb-4 min-h-[1.2em] flex items-center justify-center"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.8 }}
         >
-          <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            {personalInfo.name}
+          <span 
+            className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
+            suppressHydrationWarning
+          >
+            {displayText}
           </span>
+          <motion.span
+            animate={{ opacity: [1, 0] }}
+            transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
+            className={`inline-block w-1 h-[0.8em] bg-accent ml-2 ${isTypingComplete ? 'opacity-50' : ''}`}
+          />
         </motion.h1>
 
         {/* Title */}
         <motion.p
-          className="text-xl md:text-2xl text-muted-foreground mb-6 font-light"
+          className="text-xl md:text-2xl text-muted-foreground mb-4 font-light"
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           {personalInfo.title}
         </motion.p>
+
+        {/* Location and Timezone */}
+        <motion.div
+          className="flex items-center justify-center gap-6 text-white/70 mb-6 font-medium text-sm md:text-base"
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
+        >
+          <div className="flex items-center gap-2">
+            <MapPin size={18} className="text-accent" />
+            <span>{personalInfo.location}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Clock size={18} className="text-accent" />
+            <span>IST (UTC+5:30)</span>
+          </div>
+        </motion.div>
 
         {/* Description */}
         <motion.p

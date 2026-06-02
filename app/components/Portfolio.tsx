@@ -8,6 +8,7 @@ import { AboutSection } from "./AboutSection";
 import { ProjectsSection } from "./ProjectsSection";
 import { SkillsSection } from "./SkillsSection";
 import { ExperienceSection } from "./ExperienceSection";
+import { FeedbackSection } from "./FeedbackSection";
 import { ContactSection } from "./ContactSection";
 
 export default function Portfolio() {
@@ -24,6 +25,7 @@ export default function Portfolio() {
         <ProjectsSection />
         <SkillsSection />
         <ExperienceSection />
+        <FeedbackSection />
         <ContactSection />
       </main>
 
