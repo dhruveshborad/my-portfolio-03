@@ -1,39 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Download, Rocket, MapPin, Clock } from "lucide-react";
-import { personalInfo } from "../data/portfolio";
+import { Download, ArrowRight, Code2, Cpu, Database, Cloud, Brain } from "lucide-react";
 import Image from "next/image";
-import { useState, useEffect } from "react";
 
 export function HeroSection() {
-  const [displayText, setDisplayText] = useState("");
-  const [isTypingComplete, setIsTypingComplete] = useState(false);
-
-  useEffect(() => {
-    let i = 0;
-    const text = personalInfo.name;
-    const timer = setInterval(() => {
-      setDisplayText(text.substring(0, i));
-      i++;
-      if (i > text.length) {
-        clearInterval(timer);
-        setIsTypingComplete(true);
-      }
-    }, 150); // typing speed
-    
-    return () => clearInterval(timer);
-  }, []);
-
   const handleViewWork = () => {
-    const element = document.querySelector("#projects");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleDownloadCV = () => {
-    // In a real app, this would download the actual CV
     const link = document.createElement("a");
     link.href = "/assets/Resume.pdf";
     link.download = "Resume.pdf";
@@ -41,123 +17,122 @@ export function HeroSection() {
   };
 
   return (
-    <section
-      id="home"
-      className="min-h-screen flex items-center justify-center relative z-10 px-4"
-    >
-      <div className="text-center">
-        {/* Profile Image */}
+    <section id="home" className="min-h-screen flex items-center justify-center relative pt-20 pb-10 px-6 lg:px-12 max-w-7xl mx-auto">
+      <div className="w-full grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+        {/* Left Side: Text and CTA */}
+        <div className="flex flex-col items-center lg:items-start text-center lg:text-left z-10 mt-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-medium mb-6 backdrop-blur-sm flex-wrap"
+          >
+            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)] shrink-0" />
+            <span className="text-center">Available for Freelance & Remote Opportunities</span>
+          </motion.div>
+
+          <motion.h1
+            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-foreground mb-6 font-heading leading-[1.1]"
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            Building <span className="premium-gradient">High-Performance</span> Web Applications, AI Solutions & Scalable Digital Products
+          </motion.h1>
+
+          <motion.p
+            className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-10 max-w-xl font-light leading-relaxed mx-auto lg:mx-0"
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            Full Stack Developer with 5+ years of experience delivering production-grade applications across FinTech, Trading, AI, Enterprise SaaS, and Global Client Projects.
+          </motion.p>
+
+          <motion.div
+            className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mb-10 w-full max-w-2xl mx-auto lg:mx-0"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            {[
+              { label: "Experience", value: "5+ Yrs" },
+              { label: "Projects", value: "20+" },
+              { label: "Clients", value: "Global" },
+              { label: "Specialty", value: "Full Stack" }
+            ].map((stat, i) => (
+              <div key={i} className="flex flex-col gap-1 border-l-2 border-primary/30 pl-3 sm:pl-4">
+                <span className="text-2xl sm:text-3xl font-bold text-foreground font-heading">{stat.value}</span>
+                <span className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-widest font-medium">{stat.label}</span>
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mx-auto lg:mx-0"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <button
+              onClick={handleViewWork}
+              className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center space-x-2 hover:bg-primary/90 hover:scale-105 premium-glow w-full sm:w-auto shadow-lg"
+            >
+              <span>View Projects</span>
+              <ArrowRight size={20} />
+            </button>
+            <button
+              onClick={handleDownloadCV}
+              className="bg-card/50 backdrop-blur-md border border-border text-foreground px-8 py-4 rounded-xl font-semibold hover:bg-accent transition-all duration-300 flex items-center justify-center space-x-2 hover:scale-105 w-full sm:w-auto"
+            >
+              <Download size={20} />
+              <span>Download Resume</span>
+            </button>
+          </motion.div>
+        </div>
+
+        {/* Right Side: Illustration & Tech Badges */}
         <motion.div
-          className="relative mb-8"
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
+          className="relative hidden lg:block h-[600px] w-full"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <motion.div
-            className="w-40 h-40 mx-auto rounded-full overflow-hidden cosmic-glow"
-            animate={{
-              y: [0, -10, 0],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
+          {/* Main Illustration */}
+          <div className="absolute inset-0 flex items-center justify-center z-0">
+            <div className="absolute w-[400px] h-[400px] rounded-full bg-primary/20 blur-[100px] animate-pulse" />
+            <div className="absolute w-[300px] h-[300px] rounded-full bg-secondary/20 blur-[80px] -translate-x-20 translate-y-20" />
+            <div className="absolute w-[450px] h-[450px] rounded-full bg-background dark:bg-transparent shadow-2xl dark:shadow-none" />
             <Image
-              src={personalInfo.profileImage}
-              width={160}
-              height={160}
-              alt={`${personalInfo.name} - Frontend Developer`}
-              className="w-full h-full object-top object-cover"
+              src="/developer_illustration.png"
+              alt="Developer Workspace"
+              width={600}
+              height={600}
+              className="absolute object-contain z-10 animate-float drop-shadow-2xl mix-blend-darken dark:mix-blend-normal"
+              priority
             />
-          </motion.div>
-        </motion.div>
-
-        {/* Name */}
-        <motion.h1
-          className="text-6xl md:text-8xl font-orbitron font-bold text-white mb-4 min-h-[1.2em] flex items-center justify-center"
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-        >
-          <span 
-            className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
-            suppressHydrationWarning
-          >
-            {displayText}
-          </span>
-          <motion.span
-            animate={{ opacity: [1, 0] }}
-            transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
-            className={`inline-block w-1 h-[0.8em] bg-accent ml-2 ${isTypingComplete ? 'opacity-50' : ''}`}
-          />
-        </motion.h1>
-
-        {/* Title */}
-        <motion.p
-          className="text-xl md:text-2xl text-muted-foreground mb-4 font-light"
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          {personalInfo.title}
-        </motion.p>
-
-        {/* Location and Timezone */}
-        <motion.div
-          className="flex items-center justify-center gap-6 text-white/70 mb-6 font-medium text-sm md:text-base"
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-        >
-          <div className="flex items-center gap-2">
-            <MapPin size={18} className="text-accent" />
-            <span>{personalInfo.location}</span>
           </div>
-          <div className="flex items-center gap-2">
-            <Clock size={18} className="text-accent" />
-            <span>IST (UTC+5:30)</span>
-          </div>
-        </motion.div>
 
-        {/* Description */}
-        <motion.p
-          className="text-lg text-white/80 max-w-2xl mx-auto mb-8 leading-relaxed"
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-        >
-          {personalInfo.description}
-        </motion.p>
-
-        {/* CTA Buttons */}
-        <motion.div
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1 }}
-        >
-          <motion.button
-            onClick={handleViewWork}
-            className="glass-morphism cosmic-glow px-8 py-4 rounded-xl text-white font-semibold transition-all duration-300 flex items-center space-x-2"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            data-testid="button-view-work"
-          >
-            <Rocket size={20} />
-            <span>View My Work</span>
-          </motion.button>
-          <motion.button
-            onClick={handleDownloadCV}
-            className="border border-white/20 px-8 py-4 rounded-xl text-white font-semibold hover:bg-white/10 transition-all duration-300 flex items-center space-x-2"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            data-testid="button-download-cv"
-          >
-            <Download size={20} />
-            <span>Download CV</span>
-          </motion.button>
+          {/* Floating Badges */}
+          {[
+            { icon: <Code2 size={20} />, label: "React", top: "15%", left: "5%", delay: 0 },
+            { icon: <Database size={20} />, label: "Next.js", top: "25%", left: "75%", delay: 1 },
+            { icon: <Code2 size={20} />, label: "TypeScript", top: "65%", left: "2%", delay: 2 },
+            { icon: <Cpu size={20} />, label: "Node.js", top: "80%", left: "60%", delay: 1.5 },
+            { icon: <Cloud size={20} />, label: "AWS", top: "45%", left: "85%", delay: 0.5 },
+            { icon: <Brain size={20} />, label: "OpenAI", top: "75%", left: "25%", delay: 2.5 },
+          ].map((badge, i) => (
+            <motion.div
+              key={i}
+              className="absolute z-20 bg-background/90 backdrop-blur-md px-4 py-3 rounded-2xl flex items-center gap-3 text-sm font-medium shadow-xl border border-border/50"
+              style={{ top: badge.top, left: badge.left }}
+              animate={{ y: [0, -15, 0] }}
+              transition={{ duration: 4, repeat: Infinity, delay: badge.delay, ease: "easeInOut" }}
+            >
+              <div className="text-primary bg-primary/10 p-1.5 rounded-lg">{badge.icon}</div>
+              <span className="text-foreground">{badge.label}</span>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>

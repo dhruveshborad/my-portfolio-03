@@ -4,59 +4,48 @@
 
 @layer base {
   :root {
-    --background: hsl(0, 0%, 100%);
-    --foreground: hsl(222, 47%, 11%);
-    --card: hsl(0, 0%, 100%);
-    --card-foreground: hsl(222, 47%, 11%);
-    --popover: hsl(0, 0%, 100%);
-    --popover-foreground: hsl(222, 47%, 11%);
-    --primary: hsl(221, 83%, 53%);
-    --primary-foreground: hsl(210, 40%, 98%);
-    --secondary: hsl(210, 40%, 96%);
-    --secondary-foreground: hsl(222, 47%, 11%);
-    --muted: hsl(210, 40%, 96%);
-    --muted-foreground: hsl(215, 13%, 65%);
-    --accent: hsl(210, 40%, 96%);
-    --accent-foreground: hsl(222, 47%, 11%);
-    --destructive: hsl(0, 84%, 60%);
-    --destructive-foreground: hsl(210, 40%, 98%);
-    --border: hsl(214, 32%, 91%);
-    --input: hsl(214, 32%, 91%);
-    --ring: hsl(221, 83%, 53%);
+    --background: 0 0% 96%; /* #F5F5F5 - Neutral Light Gray */
+    --foreground: 0 0% 15%; /* #262626 */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 15%;
+    --primary: 239 84% 67%; /* #6366F1 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 258 90% 66%; /* #8B5CF6 */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 5% 40%;
+    --accent: 240 5% 96%;
+    --accent-foreground: 0 0% 4%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5% 90%;
+    --input: 240 5% 90%;
+    --ring: 239 84% 67%;
     --radius: 0.75rem;
-    --font-sans: "Inter", system-ui, sans-serif;
-    --font-orbitron: "Orbitron", monospace;
   }
 
   .dark {
-    --background: hsl(225, 39%, 7%);
-    --foreground: hsl(0, 0%, 98%);
-    --card: hsl(224, 71%, 4%);
-    --card-foreground: hsl(0, 0%, 98%);
-    --popover: hsl(224, 71%, 4%);
-    --popover-foreground: hsl(0, 0%, 98%);
-    --primary: hsl(220, 91%, 35%);
-    --primary-foreground: hsl(0, 0%, 98%);
-    --secondary: hsl(262, 83%, 58%);
-    --secondary-foreground: hsl(0, 0%, 98%);
-    --muted: hsl(215, 27%, 32%);
-    --muted-foreground: hsl(217, 10%, 64%);
-    --accent: hsl(262, 90%, 67%);
-    --accent-foreground: hsl(0, 0%, 98%);
-    --destructive: hsl(0, 63%, 31%);
-    --destructive-foreground: hsl(0, 0%, 98%);
-    --border: hsl(216, 34%, 17%);
-    --input: hsl(216, 34%, 17%);
-    --ring: hsl(263, 70%, 50%);
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
+    --background: 0 0% 4%; /* #0A0A0A */
+    --foreground: 0 0% 100%; /* #FFFFFF */
+    --card: 0 0% 7%; /* #111111 */
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 239 84% 67%; /* #6366F1 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 258 90% 66%; /* #8B5CF6 */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 240 5% 65%; /* #A1A1AA */
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 239 84% 67%;
   }
 }
 
@@ -76,48 +65,37 @@
 }
 
 @layer components {
-  .cosmic-bg {
-    background: linear-gradient(135deg, 
-      hsl(225, 39%, 7%) 0%, 
-      hsl(224, 71%, 4%) 25%, 
-      hsl(262, 83%, 8%) 50%, 
-      hsl(220, 91%, 5%) 75%, 
-      hsl(225, 39%, 7%) 100%);
+  .glass-card {
+    @apply bg-card/40 backdrop-blur-xl border border-white/10 shadow-2xl;
   }
-
-  .glass-morphism {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  .glass-panel {
+    @apply bg-background/60 backdrop-blur-2xl border-b border-white/5;
   }
-
-  .cosmic-glow {
-    box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+  
+  .premium-gradient {
+    @apply bg-gradient-to-br from-primary via-secondary to-primary bg-clip-text text-transparent;
   }
-
-  .cosmic-glow:hover {
-    box-shadow: 0 0 50px rgba(139, 92, 246, 0.5), 0 0 80px rgba(99, 102, 241, 0.3);
+  
+  .premium-glow {
+    box-shadow: 0 0 40px -10px rgba(99, 102, 241, 0.4);
+  }
+  
+  .premium-glow:hover {
+    box-shadow: 0 0 60px -10px rgba(139, 92, 246, 0.5);
   }
 
   .nav-glass {
-    background: rgba(11, 20, 38, 0.8);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    @apply bg-background/80 backdrop-blur-md border-b border-white/5;
   }
 
-  .star {
-    background: white;
-    border-radius: 50%;
-    position: absolute;
+  .no-scrollbar::-webkit-scrollbar { 
+    display: none; 
   }
 
-  .planet {
-    position: absolute;
-    border-radius: 50%;
-  }
-
-  .font-orbitron {
-    font-family: var(--font-orbitron);
+  .no-scrollbar { 
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
   }
 }
 
@@ -134,45 +112,17 @@
       cursor: none;
     }
   }
-  .no-scrollbar::-webkit-scrollbar { 
-    display: none; 
-  }
-
-  .no-scrollbar { 
-    -ms-overflow-style: none; 
-    scrollbar-width: none; 
-  }
 
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
 
-  .animate-orbit {
-    animation: orbit 20s linear infinite;
-  }
-
-  .animate-orbit-slow {
-    animation: orbit 40s linear infinite;
-  }
-
-  .animate-orbit-fast {
-    animation: orbit 10s linear infinite;
-  }
-
-  .animate-twinkle {
-    animation: twinkle 4s ease-in-out infinite;
-  }
-
-  .animate-cosmic-glow {
-    animation: cosmic-glow 3s ease-in-out infinite alternate;
-  }
-
-  .animate-slide-up {
-    animation: slide-up 0.8s ease-out;
-  }
-
   .animate-fade-in {
     animation: fade-in 1s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slide-up 0.8s ease-out forwards;
   }
 }
 
@@ -185,32 +135,12 @@
   }
 }
 
-@keyframes orbit {
+@keyframes fade-in {
   from { 
-    transform: rotate(0deg) translateX(100px) rotate(0deg); 
+    opacity: 0; 
   }
   to { 
-    transform: rotate(360deg) translateX(100px) rotate(-360deg); 
-  }
-}
-
-@keyframes twinkle {
-  0%, 100% { 
-    opacity: 0.3; 
-    transform: scale(1); 
-  }
-  50% { 
     opacity: 1; 
-    transform: scale(1.2); 
-  }
-}
-
-@keyframes cosmic-glow {
-  0% { 
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3); 
-  }
-  100% { 
-    box-shadow: 0 0 40px rgba(139, 92, 246, 0.6), 0 0 60px rgba(99, 102, 241, 0.3); 
   }
 }
 
@@ -222,14 +152,5 @@
   to { 
     opacity: 1; 
     transform: translateY(0); 
-  }
-}
-
-@keyframes fade-in {
-  from { 
-    opacity: 0; 
-  }
-  to { 
-    opacity: 1; 
   }
 }

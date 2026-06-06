@@ -1,16 +1,20 @@
+"use client";
+
 import { motion } from "framer-motion";
-import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 import { testimonials } from "../data/portfolio";
-import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
+import { Quote, ChevronLeft, ChevronRight, Star } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { GlassCard } from "./ui/glass-card";
 
 export function FeedbackSection() {
-  const { ref, isIntersecting } = useIntersectionObserver();
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
     loop: true,
   });
+
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(true);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -20,85 +24,115 @@ export function FeedbackSection() {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
 
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setCanScrollPrev(emblaApi.canScrollPrev());
+    setCanScrollNext(emblaApi.canScrollNext());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+  }, [emblaApi, onSelect]);
+
   return (
-    <section id="feedback" className="py-20 px-4 relative z-10" ref={ref}>
-      <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
+    <section id="feedback" className="py-24 px-6 relative z-10 bg-card/5">
+      <div className="max-w-7xl mx-auto">
         <motion.div
-          className="text-center mb-16"
-          initial={{ y: 30, opacity: 0 }}
-          animate={isIntersecting ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-white mb-4">
-            Client <span className="text-accent">Feedback</span>
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
+            Client <span className="premium-gradient">Testimonials</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-6"></div>
-          <p className="text-white/80 max-w-2xl mx-auto">
-            Don't just take my word for it. Here's what my clients from around the globe have to say about our collaboration.
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Don't just take my word for it. Here's what founders and engineering managers have to say.
           </p>
         </motion.div>
 
-        {/* Carousel Container */}
         <motion.div
           className="relative"
           initial={{ opacity: 0, y: 30 }}
-          animate={isIntersecting ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>
-            <div className="flex -ml-6">
+          <div className="overflow-hidden cursor-grab active:cursor-grabbing px-4 -mx-4" ref={emblaRef}>
+            <div className="flex -ml-6 py-8">
               {testimonials.map((testimonial) => (
                 <div
                   key={testimonial.id}
                   className="pl-6 flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0"
                 >
-                  <div className="glass-morphism p-8 rounded-2xl cosmic-glow relative flex flex-col h-full select-none">
-                    <Quote className="text-accent/40 w-12 h-12 absolute top-6 right-6" />
-                    <div className="flex-grow">
-                      <p className="text-white/90 italic leading-relaxed mb-6 mt-4 z-10 relative">
-                        "{testimonial.content}"
-                      </p>
+                  <GlassCard className="p-8 h-full flex flex-col relative bg-card/40 border-white/5 hover:-translate-y-2 transition-all duration-300">
+                    <Quote className="text-primary/20 w-16 h-16 absolute top-6 right-6" />
+                    
+                    <div className="flex gap-1 mb-6">
+                      {[1, 2, 3, 4, 5].map(star => (
+                        <Star key={star} size={16} className="fill-yellow-500 text-yellow-500" />
+                      ))}
                     </div>
-                    <div className="mt-auto border-t border-white/10 pt-4 flex items-center justify-between z-10 relative">
-                      <div>
-                        <h4 className="text-lg font-semibold text-white font-orbitron">{testimonial.name}</h4>
-                        <span className="text-primary-foreground text-sm font-medium flex items-center gap-2">
-                          <img 
-                            src={`https://flagcdn.com/w20/${testimonial.countryCode}.png`}
-                            srcSet={`https://flagcdn.com/w40/${testimonial.countryCode}.png 2x`}
-                            width="20"
-                            alt={`${testimonial.country} flag`}
-                            className="inline-block rounded-sm"
-                          />
-                          {testimonial.country}
-                        </span>
-                      </div>
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold shadow-lg">
-                        {testimonial.name.charAt(0)}
+
+                    <p className="text-foreground leading-relaxed mb-8 relative z-10 text-lg">
+                      "{testimonial.content}"
+                    </p>
+
+                    <div className="mt-auto pt-6 border-t border-border flex items-center justify-between z-10 relative">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-primary-foreground font-heading font-bold shadow-lg text-xl">
+                          {testimonial.name.charAt(0)}
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-bold text-foreground font-heading">{testimonial.name}</h4>
+                          <span className="text-muted-foreground text-sm font-medium flex items-center gap-2">
+                            <img 
+                              src={`https://flagcdn.com/w20/${testimonial.countryCode}.png`}
+                              srcSet={`https://flagcdn.com/w40/${testimonial.countryCode}.png 2x`}
+                              width="20"
+                              alt={`${testimonial.country} flag`}
+                              className="inline-block rounded-sm shadow-sm"
+                            />
+                            {testimonial.country}
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </GlassCard>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Navigation Buttons */}
-          <div className="flex justify-center mt-10 gap-4">
+          <div className="flex justify-center mt-8 gap-4">
             <button
               onClick={scrollPrev}
-              className="p-3 rounded-full bg-white/5 border border-white/20 text-white hover:bg-white/10 hover:border-accent transition-all z-10 group"
+              disabled={!canScrollPrev}
+              className={`p-4 rounded-full border transition-all z-10 group flex items-center justify-center ${
+                canScrollPrev 
+                  ? "bg-background border-border text-foreground hover:border-primary hover:text-primary shadow-sm" 
+                  : "bg-background/50 border-border/50 text-muted-foreground opacity-50 cursor-not-allowed"
+              }`}
               aria-label="Previous testimonial"
             >
-              <ChevronLeft size={24} className="group-hover:-translate-x-1 transition-transform" />
+              <ChevronLeft size={20} className={canScrollPrev ? "group-hover:-translate-x-1 transition-transform" : ""} />
             </button>
             <button
               onClick={scrollNext}
-              className="p-3 rounded-full bg-white/5 border border-white/20 text-white hover:bg-white/10 hover:border-accent transition-all z-10 group"
+              disabled={!canScrollNext}
+              className={`p-4 rounded-full border transition-all z-10 group flex items-center justify-center ${
+                canScrollNext 
+                  ? "bg-background border-border text-foreground hover:border-primary hover:text-primary shadow-sm" 
+                  : "bg-background/50 border-border/50 text-muted-foreground opacity-50 cursor-not-allowed"
+              }`}
               aria-label="Next testimonial"
             >
-              <ChevronRight size={24} className="group-hover:translate-x-1 transition-transform" />
+              <ChevronRight size={20} className={canScrollNext ? "group-hover:translate-x-1 transition-transform" : ""} />
             </button>
           </div>
         </motion.div>

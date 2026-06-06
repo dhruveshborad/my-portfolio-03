@@ -1,147 +1,149 @@
+"use client";
+
 import { motion } from "framer-motion";
-import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
-import { User, Rocket, Bolt, TrendingUp } from "lucide-react";
+import Image from "next/image";
+import { User, Rocket, Code2, Server, Cloud, BrainCircuit, Quote } from "lucide-react";
+import { personalInfo } from "../data/portfolio";
+import { GlassCard } from "./ui/glass-card";
 
 export function AboutSection() {
-  const { ref, isIntersecting } = useIntersectionObserver();
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
+  const expertiseAreas = [
+    {
+      title: "Frontend Development",
+      icon: <Code2 className="text-primary" size={24} />,
+      skills: ["React", "Next.js", "TypeScript"],
+      description: "Building responsive, accessible, and highly interactive user interfaces."
     },
-  };
-
-  const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.6 },
+    {
+      title: "Backend Architecture",
+      icon: <Server className="text-secondary" size={24} />,
+      skills: ["Node.js", "Express", "Fastify"],
+      description: "Designing robust APIs and scalable microservices."
     },
-  };
-
-  const technologies = [
-    { icon: "fab fa-react", name: "React.js", color: "text-blue-400" },
-    { icon: "fas fa-bolt", name: "Next.js", color: "text-yellow-400" },
-    { icon: "fab fa-js", name: "JavaScript", color: "text-yellow-400" },
-    { icon: "fab fa-css3", name: "Tailwind CSS", color: "text-blue-400" },
-    { icon: "fab fa-git-alt", name: "Git & GitHub", color: "text-orange-400" },
-    { icon: "fas fa-code", name: "VS Code", color: "text-purple-400" },
+    {
+      title: "AI Integration",
+      icon: <BrainCircuit className="text-pink-500" size={24} />,
+      skills: ["OpenAI", "RAG Systems", "AI Agents", "Prompt Engineering"],
+      description: "Leveraging LLMs to build intelligent and context-aware applications."
+    },
+    {
+      title: "Cloud Infrastructure",
+      icon: <Cloud className="text-blue-400" size={24} />,
+      skills: ["AWS", "Docker", "Vercel"],
+      description: "Deploying and managing scalable applications in the cloud."
+    }
   ];
 
   return (
-    <section id="about" className="py-20 px-4 relative z-10" ref={ref}>
-      <div className="max-w-6xl mx-auto">
+    <section id="about" className="py-24 px-6 relative z-10">
+      <div className="max-w-7xl mx-auto">
+        
         {/* Section Header */}
         <motion.div
-          className="text-center mb-16"
-          variants={itemVariants}
-          initial="hidden"
-          animate={isIntersecting ? "visible" : "hidden"}
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-white mb-4">
-            About <span className="text-accent">Me</span>
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
+            About <span className="premium-gradient">Me</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            My journey, philosophy, and technical expertise.
+          </p>
         </motion.div>
 
-        <motion.div
-          className="grid md:grid-cols-2 gap-12 items-center"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isIntersecting ? "visible" : "hidden"}
-        >
-          {/* Left Column */}
-          <div className="space-y-6">
-            <motion.div
-              className="glass-morphism p-8 rounded-2xl cosmic-glow"
-              variants={itemVariants}
-            >
-              <h3 className="text-2xl font-orbitron font-semibold text-white mb-4 flex items-center">
-                <User className="text-accent mr-3" size={24} />
-                Who I Am
-              </h3>
-              <p className="text-white/80 leading-relaxed">
-                I&apos;m a passionate Frontend Developer with over 5 years of experience creating exceptional digital experiences. 
-                My journey in web development started with curiosity and has evolved into a deep expertise in modern technologies 
-                and user-centered design principles.
-              </p>
-            </motion.div>
-
-            <motion.div
-              className="glass-morphism p-8 rounded-2xl cosmic-glow"
-              variants={itemVariants}
-            >
-              <h3 className="text-2xl font-orbitron font-semibold text-white mb-4 flex items-center">
-                <Rocket className="text-accent mr-3" size={24} />
-                What I Do
-              </h3>
-              <p className="text-white/80 leading-relaxed">
-                I specialize in building responsive, performant web applications using React.js and Next.js. 
-                I&apos;m passionate about clean code, exceptional user experiences, and staying at the forefront of web technology innovation.
-              </p>
-            </motion.div>
-          </div>
-
-          {/* Right Column */}
-          <div className="space-y-6">
-            <motion.div
-              className="glass-morphism p-8 rounded-2xl cosmic-glow"
-              variants={itemVariants}
-            >
-              <h3 className="text-2xl font-orbitron font-semibold text-white mb-6 flex items-center">
-                <Bolt className="text-accent mr-3" size={24} />
-                Core Technologies
-              </h3>
-              <div className="grid grid-cols-2 gap-4">
-                {technologies.map((tech, index) => (
-                  <motion.div
-                    key={tech.name}
-                    className="flex items-center space-x-3"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isIntersecting ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                    transition={{ delay: 0.8 + index * 0.1 }}
-                  >
-                    <i className={`${tech.icon} ${tech.color} text-xl`}></i>
-                    <span className="text-white">{tech.name}</span>
-                  </motion.div>
-                ))}
+        <div className="grid lg:grid-cols-12 gap-12 items-start">
+          
+          {/* Left Column: Image and Journey */}
+          <div className="lg:col-span-5 space-y-8">
+            <GlassCard className="p-8 border-border">
+              <div className="relative w-full h-64 sm:h-80 md:h-96 rounded-xl overflow-hidden mb-8">
+                <div className="absolute inset-0 bg-primary/20 mix-blend-overlay z-10"></div>
+                <Image
+                  src={personalInfo.profileImage}
+                  alt={personalInfo.name}
+                  fill
+                  className="object-cover object-top grayscale hover:grayscale-0 transition-all duration-500"
+                />
               </div>
+              
+              <h3 className="text-2xl font-heading font-semibold text-foreground mb-4 flex items-center gap-2">
+                <User className="text-primary" size={24} />
+                My Journey
+              </h3>
+              <div className="space-y-4 text-muted-foreground leading-relaxed">
+                <p>
+                  I began my software engineering journey over 5 years ago with a passion for building 
+                  things that live on the internet. Fast forward to today, I&apos;ve had the privilege 
+                  of building software for diverse sectors including FinTech, Trading platforms, and 
+                  Enterprise SaaS.
+                </p>
+                <p>
+                  My main focus these days is building accessible, inclusive products and digital experiences, 
+                  while actively exploring the intersection of web development and Artificial Intelligence.
+                </p>
+              </div>
+
+              <div className="mt-8 p-6 bg-background/50 rounded-xl border border-border relative">
+                <Quote className="absolute top-4 left-4 text-primary/20" size={40} />
+                <p className="relative z-10 text-foreground italic font-medium leading-relaxed pl-6">
+                  &quot;I believe in engineering solutions that are not just functionally robust, but also deliver an exceptional and seamless user experience.&quot;
+                </p>
+              </div>
+            </GlassCard>
+          </div>
+
+          {/* Right Column: Expertise */}
+          <div className="lg:col-span-7">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mb-8"
+            >
+              <h3 className="text-2xl font-heading font-semibold text-foreground mb-4 flex items-center gap-2">
+                <Rocket className="text-primary" size={24} />
+                Technical Expertise
+              </h3>
+              <p className="text-muted-foreground">
+                I&apos;ve worked with a variety of technologies across the stack. Here are the core areas I specialize in:
+              </p>
             </motion.div>
 
-            <motion.div
-              className="glass-morphism p-8 rounded-2xl cosmic-glow"
-              variants={itemVariants}
-            >
-              <h3 className="text-2xl font-orbitron font-semibold text-white mb-4 flex items-center">
-                <TrendingUp className="text-accent mr-3" size={24} />
-                Experience Highlights
-              </h3>
-              <ul className="space-y-3 text-white/80">
-                {[
-                  "4+ years of frontend development expertise",
-                  "20+ successful projects delivered",
-                  "Modern responsive web applications"
-                ].map((highlight, index) => (
-                  <motion.li
-                    key={index}
-                    className="flex items-center"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isIntersecting ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                    transition={{ delay: 1.2 + index * 0.1 }}
-                  >
-                    <i className="fas fa-star text-yellow-400 mr-3"></i>
-                    {highlight}
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
+            <div className="grid sm:grid-cols-2 gap-6">
+              {expertiseAreas.map((area, idx) => (
+                <motion.div
+                  key={area.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                >
+                  <GlassCard hoverEffect className="h-full p-6 bg-card/20 border-white/5">
+                    <div className="bg-background/80 w-12 h-12 rounded-lg flex items-center justify-center mb-6 shadow-sm border border-border">
+                      {area.icon}
+                    </div>
+                    <h4 className="text-xl font-heading font-semibold text-foreground mb-3">{area.title}</h4>
+                    <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
+                      {area.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mt-auto">
+                      {area.skills.map(skill => (
+                        <span key={skill} className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full border border-primary/20">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </GlassCard>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </motion.div>
+          
+        </div>
       </div>
     </section>
   );

@@ -1,31 +1,39 @@
 'use client';
 
 import { useScrollProgress } from "../hooks/useScrollProgress";
-import { CosmicBackground } from "./CosmicBackground";
+import { PremiumBackground } from "./PremiumBackground";
 import { Navigation } from "./Navigation";
 import { HeroSection } from "./HeroSection";
+import { SocialProofSection } from "./SocialProofSection";
 import { AboutSection } from "./AboutSection";
 import { ProjectsSection } from "./ProjectsSection";
 import { SkillsSection } from "./SkillsSection";
 import { ExperienceSection } from "./ExperienceSection";
+import { ArchitectureSection } from "./ArchitectureSection";
 import { FeedbackSection } from "./FeedbackSection";
+import { BlogSection } from "./BlogSection";
+import { GithubActivitySection } from "./GithubActivitySection";
 import { ContactSection } from "./ContactSection";
 
 export default function Portfolio() {
   const scrollProgress = useScrollProgress();
 
   return (
-    <div className="cosmic-bg min-h-screen">
-      <CosmicBackground />
+    <div className="min-h-screen">
+      <PremiumBackground />
       <Navigation scrollProgress={scrollProgress} />
       
       <main>
         <HeroSection />
+        <SocialProofSection />
         <AboutSection />
         <ProjectsSection />
         <SkillsSection />
         <ExperienceSection />
+        <ArchitectureSection />
         <FeedbackSection />
+        <BlogSection />
+        <GithubActivitySection />
         <ContactSection />
       </main>
 
