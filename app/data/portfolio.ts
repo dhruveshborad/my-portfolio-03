@@ -318,14 +318,14 @@ export const testimonials: Testimonial[] = [
     name: "Maki",
     country: "Japan",
     countryCode: "jp",
-    content: "Yash built our real-time investment platform with great performance and scalability. The system manages live predictions and discussions effectively. It is very reliable and well executed."
+    content: "Dhruvesh built our real-time investment platform with great performance and scalability. The system manages live predictions and discussions effectively. It is very reliable and well executed."
   },
   {
     id: "2",
     name: "Karan Patel",
     country: "USA",
     countryCode: "us",
-    content: "Yash provided a complete event management platform with clear structure and smooth user experience. Task tracking and budgeting all function well."
+    content: "Dhruvesh provided a complete event management platform with clear structure and smooth user experience. Task tracking and budgeting all function well."
   },
   {
     id: "3",

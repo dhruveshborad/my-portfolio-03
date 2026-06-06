@@ -161,10 +161,10 @@ export function ProjectsSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
+              className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6"
             >
               <div 
-                className="absolute inset-0 bg-background/80 backdrop-blur-xl"
+                className="absolute inset-0 bg-black/40 backdrop-blur-sm"
                 onClick={() => setSelectedProject(null)}
               />
               
@@ -175,15 +175,8 @@ export function ProjectsSection() {
                 transition={{ type: "spring", damping: 25, stiffness: 300 }}
                 className="relative w-full max-w-5xl max-h-[90vh] overflow-hidden bg-card border border-border rounded-2xl shadow-2xl flex flex-col p-2"
               >
-                <button 
-                  onClick={() => setSelectedProject(null)}
-                  className="absolute top-4 right-4 p-2 rounded-full bg-background/50 backdrop-blur-md text-muted-foreground hover:text-foreground hover:bg-background transition-colors z-50 shadow-lg"
-                >
-                  <X size={24} />
-                </button>
-
                 {/* Scrolling Content */}
-                <div className="w-full h-full overflow-y-auto no-scrollbar">
+                <div className="w-full h-full overflow-y-auto no-scrollbar relative rounded-xl">
                   {/* Modal Header */}
                 <div className="relative h-64 md:h-80 w-full shrink-0">
                   <Image
@@ -268,7 +261,7 @@ export function ProjectsSection() {
                       <ul className="space-y-3">
                         {["Real-time data synchronization", "Advanced AI integrations", "Enterprise-grade security", "High-performance architecture"].map((feature, i) => (
                           <li key={i} className="flex items-start gap-3 text-muted-foreground">
-                            <span className="text-primary mt-1">✦</span>
+                            <span className="text-primary">✦</span>
                             <span>{feature}</span>
                           </li>
                         ))}
@@ -277,6 +270,18 @@ export function ProjectsSection() {
                   </div>
                 </div>
                 </div>
+
+                {/* Fixed Close Button */}
+                <button 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    setSelectedProject(null);
+                  }}
+                  className="absolute top-6 right-6 p-2 rounded-full bg-background/80 backdrop-blur-md text-foreground hover:bg-background transition-all shadow-xl z-50 border border-border"
+                >
+                  <X size={24} />
+                </button>
               </motion.div>
             </motion.div>
           )}

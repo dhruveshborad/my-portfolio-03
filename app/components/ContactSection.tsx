@@ -2,9 +2,71 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { personalInfo } from "../data/portfolio";
-import { useState } from "react";
-import { Send, Mail, Phone, MapPin, LinkedinIcon, Github, Twitter, Download, CheckCircle2 } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Send, Mail, Phone, MapPin, LinkedinIcon, Github, Twitter, Download, CheckCircle2, ChevronDown } from "lucide-react";
 import { GlassCard } from "./ui/glass-card";
+
+function CustomSelect({ options, value, onChange, placeholder }: { options: { label: string, value: string }[], value: string, onChange: (val: string) => void, placeholder: string }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const selectedOption = options.find(opt => opt.value === value);
+
+  return (
+    <div className="relative" ref={ref}>
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-left flex items-center justify-between shadow-sm"
+      >
+        <span className={selectedOption ? "text-foreground" : "text-muted-foreground"}>
+          {selectedOption ? selectedOption.label : placeholder}
+        </span>
+        <ChevronDown size={18} className={`text-muted-foreground transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="absolute z-50 w-full mt-2 bg-card border border-border rounded-xl shadow-xl overflow-hidden backdrop-blur-xl"
+          >
+            <div className="max-h-60 overflow-y-auto no-scrollbar py-1">
+              {options.map((option) => (
+                <button
+                  key={option.value}
+                  type="button"
+                  onClick={() => {
+                    onChange(option.value);
+                    setIsOpen(false);
+                  }}
+                  className={`w-full text-left px-4 py-2.5 transition-colors hover:bg-primary/10 hover:text-primary ${
+                    value === option.value ? "bg-primary/5 text-primary font-medium" : "text-foreground"
+                  }`}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 interface FormData {
   name: string;
@@ -130,7 +192,7 @@ export function ContactSection() {
                   </div>
 
                   <div className="flex items-center gap-4 group">
-                    <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent group-hover:scale-110 transition-transform">
+                    <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 group-hover:scale-110 transition-transform">
                       <MapPin size={20} />
                     </div>
                     <div>
@@ -230,37 +292,33 @@ export function ContactSection() {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-foreground">Project Type</label>
-                      <select
-                        name="projectType"
+                      <CustomSelect
                         value={formData.projectType}
-                        onChange={handleInputChange}
-                        required
-                        className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-foreground appearance-none"
-                      >
-                        <option value="" disabled>Select project type</option>
-                        <option value="Web Development">Web Development</option>
-                        <option value="AI Integration">AI Integration</option>
-                        <option value="Mobile App">Mobile App</option>
-                        <option value="Consulting">Consulting</option>
-                        <option value="Other">Other</option>
-                      </select>
+                        onChange={(val) => setFormData(prev => ({ ...prev, projectType: val }))}
+                        placeholder="Select project type"
+                        options={[
+                          { label: "Web Development", value: "Web Development" },
+                          { label: "AI Integration", value: "AI Integration" },
+                          { label: "Mobile App", value: "Mobile App" },
+                          { label: "Consulting", value: "Consulting" },
+                          { label: "Other", value: "Other" },
+                        ]}
+                      />
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-foreground">Budget Range</label>
-                      <select
-                        name="budget"
+                      <CustomSelect
                         value={formData.budget}
-                        onChange={handleInputChange}
-                        required
-                        className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-foreground appearance-none"
-                      >
-                        <option value="" disabled>Select budget range</option>
-                        <option value="<$5k">&lt; $5,000</option>
-                        <option value="$5k-$10k">$5,000 - $10,000</option>
-                        <option value="$10k-$25k">$10,000 - $25,000</option>
-                        <option value="$25k+">$25,000+</option>
-                        <option value="Not Sure">Not Sure</option>
-                      </select>
+                        onChange={(val) => setFormData(prev => ({ ...prev, budget: val }))}
+                        placeholder="Select budget range"
+                        options={[
+                          { label: "< $5,000", value: "<$5k" },
+                          { label: "$5,000 - $10,000", value: "$5k-$10k" },
+                          { label: "$10,000 - $25,000", value: "$10k-$25k" },
+                          { label: "$25,000+", value: "$25k+" },
+                          { label: "Not Sure", value: "Not Sure" },
+                        ]}
+                      />
                     </div>
                   </div>
 
