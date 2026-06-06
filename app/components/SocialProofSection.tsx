@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
 
 function AnimatedCounter({ from, to, duration = 2 }: { from: number; to: number; duration?: number }) {
@@ -34,7 +35,13 @@ export function SocialProofSection() {
     { label: "Technologies", value: 12, suffix: "+" },
   ];
 
-  const countries = ["Australia", "Japan", "Malaysia", "Turkey", "USA"];
+  const countries = [
+    { name: "Australia", flagCode: "au" },
+    { name: "Japan", flagCode: "jp" },
+    { name: "Malaysia", flagCode: "my" },
+    { name: "Turkey", flagCode: "tr" },
+    { name: "USA", flagCode: "us" }
+  ];
 
   return (
     <section className="py-20 px-6 relative z-10 border-t border-border/50 bg-card/10">
@@ -83,14 +90,21 @@ export function SocialProofSection() {
             <div className="flex flex-wrap gap-3">
               {countries.map((country, idx) => (
                 <motion.div
-                  key={country}
+                  key={country.name}
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.4 + idx * 0.1 }}
-                  className="px-6 py-3 rounded-full border border-border bg-background/50 backdrop-blur-sm text-foreground font-medium shadow-sm hover:border-primary/50 transition-colors cursor-default"
+                  className="px-6 py-3 rounded-full border border-border bg-background/50 backdrop-blur-sm text-foreground font-medium shadow-sm hover:border-primary/50 transition-colors cursor-default flex items-center gap-2"
                 >
-                  {country}
+                  <Image 
+                    src={`https://flagcdn.com/w40/${country.flagCode}.png`} 
+                    alt={country.name} 
+                    className="rounded-sm object-cover"
+                    width={24}
+                    height={18}
+                  />
+                  <span>{country.name}</span>
                 </motion.div>
               ))}
             </div>

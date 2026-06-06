@@ -65,7 +65,7 @@ export function AboutSection() {
                   src={personalInfo.profileImage}
                   alt={personalInfo.name}
                   fill
-                  className="object-cover object-top grayscale hover:grayscale-0 transition-all duration-500"
+                  className="object-cover object-top hover:grayscale-0 transition-all duration-500"
                 />
               </div>
               

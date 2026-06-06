@@ -13,6 +13,10 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'dhruvesh-borad.vercel.app',
+      },
+      {
+        protocol: 'https',
+        hostname: 'flagcdn.com',
       }
     ],
   },
