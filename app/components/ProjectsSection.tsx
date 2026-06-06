@@ -15,11 +15,14 @@ export function ProjectsSection() {
   useEffect(() => {
     if (selectedProject) {
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
+      document.documentElement.style.overflow = "auto";
     }
     return () => {
       document.body.style.overflow = "auto";
+      document.documentElement.style.overflow = "auto";
     };
   }, [selectedProject]);
 
@@ -170,16 +173,18 @@ export function ProjectsSection() {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
                 transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto bg-card border border-border rounded-2xl shadow-2xl flex flex-col no-scrollbar"
+                className="relative w-full max-w-5xl max-h-[90vh] overflow-hidden bg-card border border-border rounded-2xl shadow-2xl flex flex-col p-2"
               >
                 <button 
                   onClick={() => setSelectedProject(null)}
-                  className="absolute top-4 right-4 p-2 rounded-full bg-background/50 text-muted-foreground hover:text-foreground hover:bg-background transition-colors z-20 shadow-lg"
+                  className="absolute top-4 right-4 p-2 rounded-full bg-background/50 backdrop-blur-md text-muted-foreground hover:text-foreground hover:bg-background transition-colors z-50 shadow-lg"
                 >
                   <X size={24} />
                 </button>
 
-                {/* Modal Header */}
+                {/* Scrolling Content */}
+                <div className="w-full h-full overflow-y-auto no-scrollbar">
+                  {/* Modal Header */}
                 <div className="relative h-64 md:h-80 w-full shrink-0">
                   <Image
                     src={selectedProject.image}
@@ -270,6 +275,7 @@ export function ProjectsSection() {
                       </ul>
                     </section>
                   </div>
+                </div>
                 </div>
               </motion.div>
             </motion.div>

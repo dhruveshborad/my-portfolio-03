@@ -40,10 +40,10 @@ export default function Portfolio() {
       {/* Footer */}
       <footer className="py-8 px-4 border-t border-border/20 relative z-10">
         <div className="max-w-6xl mx-auto text-center">
-          <p className="text-white/60 mb-4">
-            © {new Date().getFullYear()} Dhruvesh Borad. All rights reserved. Built with <span className="text-accent">❤️</span> and lots of ☕
+          <p className="text-muted-foreground mb-4">
+            © {new Date().getFullYear()} Dhruvesh Borad. All rights reserved. Built with <span className="text-red-500">❤️</span> and lots of ☕
           </p>
-          <p className="text-white/40 text-sm">
+          <p className="text-muted-foreground/60 text-sm">
             Designed and developed with modern web technologies
           </p>
         </div>

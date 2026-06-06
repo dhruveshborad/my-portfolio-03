@@ -6,6 +6,7 @@ import { GitHubCalendar } from "react-github-calendar";
 import { useEffect, useState } from "react";
 import { personalInfo } from "../data/portfolio";
 import { GlassCard } from "./ui/glass-card";
+import { useTheme } from "./ThemeProvider";
 
 export function GithubActivitySection() {
   const [stats, setStats] = useState({
@@ -15,6 +16,7 @@ export function GithubActivitySection() {
     stars: 0
   });
   const [loading, setLoading] = useState(true);
+  const { theme } = useTheme();
 
   const username = personalInfo.socialLinks.github.split("/").pop() || "dhruveshborad";
 
@@ -101,13 +103,13 @@ export function GithubActivitySection() {
           <GlassCard className="p-8 bg-card/40 border-white/5 overflow-hidden">
             <h3 className="text-xl font-heading font-semibold text-foreground mb-6">Contribution Graph</h3>
             <div className="w-full overflow-x-auto pb-4 no-scrollbar">
-              <div className="min-w-[800px]">
+              <div className="min-w-[800px] [&_rect]:stroke-black/10 dark:[&_rect]:stroke-white/5 [&_rect]:stroke-[1px]">
                 <GitHubCalendar 
                   username={username} 
-                  colorScheme="dark"
+                  colorScheme={theme === 'dark' ? 'dark' : 'light'}
                   theme={{
                     light: ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39'],
-                    dark: ['var(--muted)', 'hsl(239, 84%, 80%)', 'hsl(239, 84%, 67%)', 'hsl(239, 84%, 50%)', 'hsl(239, 84%, 30%)'],
+                    dark: ['hsl(var(--muted))', 'hsl(239, 84%, 80%)', 'hsl(239, 84%, 67%)', 'hsl(239, 84%, 50%)', 'hsl(239, 84%, 30%)'],
                   }}
                   fontSize={14}
                   blockSize={12}

@@ -20,7 +20,7 @@ export function ExperienceSection() {
       case "education":
         return <GraduationCap className="text-secondary" size={20} />;
       case "certification":
-        return <Award className="text-accent" size={20} />;
+        return <Award className="text-blue-500" size={20} />;
       default:
         return <Briefcase className="text-primary" size={20} />;
     }
