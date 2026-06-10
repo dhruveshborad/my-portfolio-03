@@ -161,7 +161,7 @@ export function ProjectsSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6"
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
             >
               <div 
                 className="absolute inset-0 bg-black/40 backdrop-blur-sm"
@@ -222,8 +222,7 @@ export function ProjectsSection() {
                         {selectedProject.description}
                       </p>
                       <p className="text-muted-foreground leading-relaxed text-lg mt-4">
-                        This project was developed with a focus on scalability, performance, and user experience. 
-                        It features a robust architecture that handles complex state management and seamless API integrations, ensuring a smooth and responsive interface.
+                        {selectedProject.longDescription || "This project was developed with a focus on scalability, performance, and user experience. It features a robust architecture that handles complex state management and seamless API integrations, ensuring a smooth and responsive interface."}
                       </p>
                     </section>
 
@@ -231,12 +230,12 @@ export function ProjectsSection() {
                       <div className="p-6 rounded-xl bg-background border border-border shadow-sm">
                         <LayoutDashboard className="text-primary mb-4" size={28} />
                         <h4 className="text-lg font-semibold text-foreground mb-2">Frontend Architecture</h4>
-                        <p className="text-sm text-muted-foreground">Responsive, accessible UI built with React, focusing on micro-interactions and Core Web Vitals optimization.</p>
+                        <p className="text-sm text-muted-foreground">{selectedProject.frontendDesc || "Responsive, accessible UI built with React, focusing on micro-interactions and Core Web Vitals optimization."}</p>
                       </div>
                       <div className="p-6 rounded-xl bg-background border border-border shadow-sm">
                         <Database className="text-secondary mb-4" size={28} />
                         <h4 className="text-lg font-semibold text-foreground mb-2">Backend Architecture</h4>
-                        <p className="text-sm text-muted-foreground">Scalable microservices architecture providing robust APIs, secure authentication, and data integrity.</p>
+                        <p className="text-sm text-muted-foreground">{selectedProject.backendDesc || "Scalable microservices architecture providing robust APIs, secure authentication, and data integrity."}</p>
                       </div>
                     </section>
                   </div>
@@ -259,7 +258,7 @@ export function ProjectsSection() {
                     <section>
                       <h3 className="text-xl font-heading font-semibold text-foreground mb-4">Key Features</h3>
                       <ul className="space-y-3">
-                        {["Real-time data synchronization", "Advanced AI integrations", "Enterprise-grade security", "High-performance architecture"].map((feature, i) => (
+                        {(selectedProject.keyFeatures || ["Real-time data synchronization", "Advanced AI integrations", "Enterprise-grade security", "High-performance architecture"]).map((feature, i) => (
                           <li key={i} className="flex items-start gap-3 text-muted-foreground">
                             <span className="text-primary">✦</span>
                             <span>{feature}</span>

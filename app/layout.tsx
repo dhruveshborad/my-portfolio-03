@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import { GeistSans } from 'geist/font/sans'
 import './globals.css'
 import { ThemeProvider } from './components/ThemeProvider'
@@ -7,8 +6,6 @@ import { Toaster } from './components/ui/toaster'
 import { TooltipProvider } from './components/ui/tooltip'
 import { AnimatedCursor } from './components/AnimatedCursor'
 import { CommandPalette } from './components/CommandPalette'
-
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
   title: 'Dhruvesh Borad | Senior Full Stack Developer',
@@ -66,7 +63,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${inter.variable} ${GeistSans.variable} font-sans antialiased`}>
+      <body className={`${GeistSans.variable} font-sans antialiased`}>
         <ThemeProvider>
           <TooltipProvider>
             <AnimatedCursor />

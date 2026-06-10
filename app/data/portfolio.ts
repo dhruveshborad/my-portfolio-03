@@ -13,6 +13,10 @@ export interface Project {
   id: string;
   title: string;
   description: string;
+  longDescription?: string;
+  frontendDesc?: string;
+  backendDesc?: string;
+  keyFeatures?: string[];
   image: string;
   technologies: string[];
   demoUrl: string;
@@ -63,6 +67,25 @@ export const personalInfo = {
 };
 
 export const projects: Project[] = [
+  {
+    id: "13",
+    title: "Sampatti CRM",
+    description: "Comprehensive ERP and CRM platform featuring a user-friendly UI/UX. Includes proper user media space, multi-user roles, lead management, Meta marketing, and seamless integrations with WhatsApp, Gmail, and phone calls.",
+    longDescription: "Sampatti CRM is a fully-featured ERP and CRM platform designed to streamline business operations without overwhelming the user with complex functionalities. The core focus is on a simplified, highly intuitive UI/UX that requires zero learning curve. It unifies essential business operations—from user roles and media space management to direct integrations with major communication channels.",
+    frontendDesc: "A modern, highly responsive interface built with Next.js and Tailwind CSS, focusing on a clean, frictionless user experience and high accessibility standards.",
+    backendDesc: "A robust Node.js backend integrating with PostgreSQL, handling complex role-based access control, secure media storage, and extensive third-party APIs (WhatsApp, Meta).",
+    keyFeatures: [
+      "User-friendly UI/UX with simplified workflows",
+      "Multi-user access with customizable role-based permissions",
+      "Dedicated user media space for file management",
+      "Seamless WhatsApp, Gmail, and phone call integrations",
+      "Comprehensive lead management and Meta marketing tools"
+    ],
+    image: "/assets/sampatticrm.png",
+    technologies: ["Next.js", "Node.js", "Tailwind CSS", "WhatsApp API", "Meta API"],
+    demoUrl: "https://app.sampatticrm.com",
+    githubUrl: "#"
+  },
   {
     id: "1",
     title: "The Top Analysts",

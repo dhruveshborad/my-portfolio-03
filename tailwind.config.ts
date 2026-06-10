@@ -37,7 +37,7 @@ const config: Config = {
         sm: "calc(var(--radius) - 2px)",
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
         heading: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
       },
       keyframes: {
