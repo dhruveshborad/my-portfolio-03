@@ -193,6 +193,25 @@ export const projects: Project[] = [
     technologies: ["Next.js", "FastAPI", "AWS", "Python", "SWR", "PostgreSQL"],
     demoUrl: "https://esube.atlaspiyasa.com/",
     githubUrl: "#"
+  },
+  {
+    id: "14",
+    title: "Hotel Management System",
+    description: "Modernized large-scale admin panel featuring pixel-perfect design, hotel creation, meeting rate management, and ratings & feedback modules.",
+    longDescription: "Enhanced and maintained a large-scale Hotel Management System by modernizing the admin panel with a pixel-perfect Figma-to-code implementation. Developed and integrated multiple business-critical modules including hotel creation, meeting rate management, ratings, and feedback management.",
+    frontendDesc: "A pixel-perfect, highly responsive interface built with Next.js, TypeScript, and Tailwind CSS. Centralized state management is implemented using React Context API to ensure efficient data handling and seamless user workflows.",
+    backendDesc: "Integrated with a robust REST API backend and PostgreSQL database, providing secure data handling, dockerized environment configurations, and advanced filtering and search query APIs.",
+    keyFeatures: [
+      "Pixel-perfect Figma-to-code admin panel implementation",
+      "Modules for hotel creation, meeting rate management, ratings, and feedback",
+      "Centralized state management with React Context API",
+      "Advanced filtering and search with complete REST API integration",
+      "Dockerized environment setup for production-ready deployments"
+    ],
+    image: "/assets/hotelmanagement.png",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "Docker", "Context API"],
+    demoUrl: "#",
+    githubUrl: "#"
   }
 ];
 
